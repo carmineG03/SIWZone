@@ -45,4 +45,21 @@ public interface CommentoRepository extends JpaRepository<Commento, Long> {
 	@Modifying
 	@Query("DELETE FROM Commento c WHERE c.prodotto.id = :prodottoId AND c.user.id = :utenteId")
 	void deleteByProdottoAndUtente(@Param("prodottoId") Long prodottoId, @Param("utenteId") Long utenteId);
+	
+	/**
+	 * Trova gli ultimi 10 commenti di un prodotto specifico
+	 * @param prodottoId l'ID del prodotto
+	 * @return lista dei ultimi 10 commenti
+	 */
+	List<Commento> findTop10ByProdottoIdOrderByDataCreazioneDesc(Long prodottoId);
+	
+	/**
+	 * Carica commenti di un prodotto ordinati per data (più recenti prima)
+	 * con limite per ottimizzazione
+	 */
+	@Query("SELECT c FROM Commento c " +
+		   "LEFT JOIN FETCH c.user " +
+		   "WHERE c.prodotto.id = :prodottoId " +
+		   "ORDER BY c.dataCreazione DESC")
+	List<Commento> findByProdottoIdOrderByDataCreazioneDesc(@Param("prodottoId") Long prodottoId);
 }

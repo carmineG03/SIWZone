@@ -60,12 +60,25 @@ public class ProdottoController {
 	@GetMapping("/prodotto/{id}")
 	public String showDettagli(@PathVariable Long id, Model model) {
 
-		// recupero il prodotto con i commenti
-		Prodotto prodotto = prodottoRepository.findByIdWithCommenti(id).orElse(null);
+		// recupero il prodotto senza commenti per performance
+		Prodotto prodotto = prodottoRepository.findById(id).orElse(null);
 		if (prodotto == null) {
 			return "redirect:/showAllProdotti";
 		}
+		
+		// Carica commenti solo se esistono, con limite per performance
+		List<Commento> commenti = commentoRepository.findByProdottoIdOrderByDataCreazioneDesc(id);
+		
+		// Limita a 15 commenti per evitare lag
+		if (commenti.size() > 15) {
+			commenti = commenti.subList(0, 15);
+		}
+		
+		// Imposta i commenti limitati
+		prodotto.setCommenti(commenti);
+		
 		model.addAttribute("prodotto", prodotto);
+		model.addAttribute("totalCommenti", commentoRepository.countByProdottoId(id));
 
 		// prepare un oggetto vuoto per il binding del form
 		CommentoDTO commentoVuoto = new CommentoDTO();

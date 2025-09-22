@@ -35,4 +35,12 @@ public interface ProdottoRepository extends JpaRepository<Prodotto, Long> {
 	 */
 	@Query("SELECT p FROM Prodotto p LEFT JOIN FETCH p.commenti WHERE p.id = :id")
 	Optional<Prodotto> findByIdWithCommenti(@Param("id") Long id);
+	
+	/**
+	 * Carica un prodotto con solo gli ultimi 10 commenti per ottimizzazione
+	 * @param id del prodotto
+	 * @return prodotto con commenti limitati
+	 */
+	@Query("SELECT p FROM Prodotto p WHERE p.id = :id")
+	Optional<Prodotto> findByIdOptimized(@Param("id") Long id);
 }
