@@ -16,7 +16,7 @@
             <a href="/">Home</a>
             <a href="/showAllProdotti">Prodotti</a>
             <div th:if="${userDetails != null and userDetails.authorities.?[authority == 'ADMIN'].size() > 0}">
-                <a href="/admin/success">Admin</a>
+                <a href="/admin/success">Area Riservata</a>
             </div>
         </div>
 

@@ -16,7 +16,7 @@
         <div class="nav-links">
             <a href="/">Home</a>
             <a href="/showAllProdotti">Prodotti</a>
-            <a th:if="${userDetails != null and userDetails.authorities.?[authority == 'ADMIN'].size() > 0}" href="/admin/success">Admin</a>
+            <a th:if="${userDetails != null and userDetails.authorities.?[authority == 'ADMIN'].size() > 0}" href="/admin/success">Area Riservata</a>
         </div>
 
         <div class="search-bar">

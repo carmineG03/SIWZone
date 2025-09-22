@@ -16,7 +16,7 @@
 	<div class="navbar" id="navbar">
 		<div class="nav-links">
 			<a href="/">Home</a>
-			<a th:if="${userDetails != null and userDetails.authorities.?[authority == 'ADMIN'].size() > 0}" href="/admin/success">Admin</a>
+			<a th:if="${userDetails != null and userDetails.authorities.?[authority == 'ADMIN'].size() > 0}" href="/admin/success">Area Riservata</a>
 
 		
 		</div>
@@ -33,9 +33,9 @@
 
 		<!--login e registrazione in alto a destra-->
 		<div th:if="${userDetails}" class="auth-links">
-			<a>
-				<span th:text="${userDetails.username}"></span>
-			</a>
+			
+			<span th:text="${userDetails.username}"></span>
+			
 			<a href="/logout">Logout</a>
 		</div>
 		<div th:unless="${userDetails}" class="auth-links">
