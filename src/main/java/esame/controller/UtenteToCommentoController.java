@@ -47,30 +47,30 @@ public class UtenteToCommentoController {
 	/**
 	 * metodo che gestisce il POST del form di recensione
 	 **/
-	@PostMapping("/libro/{id}/commento")
+	@PostMapping("/Prodotto/{id}/commento")
 	public String saveCommento(@PathVariable Long id, @ModelAttribute("nuovoCommento") @Valid CommentoDTO dto,
 			BindingResult bindingResult, Principal principal, RedirectAttributes redirectAttrs, Model model) {
 
 		// verifico se ci sono errori di validazione
 		if (bindingResult.hasErrors()) {
-			Prodotto libro = prodottoService.caricaConCommenti(id);
-			model.addAttribute("libro", libro);
-			return "libro/showLibro.html";
+			Prodotto Prodotto = prodottoService.caricaConCommenti(id);
+			model.addAttribute("Prodotto", Prodotto);
+			return "Prodotto/showProdotto.html";
 		}
 
-		// funzione che gestisce l'inserimento della commento nel libro
+		// funzione che gestisce l'inserimento della commento nel Prodotto
 		commentoService.aggiungiCommento(id, dto, principal.getName());
 
 		redirectAttrs.addFlashAttribute("success", "Grazie per il tuo commento!");
 
 		// ricarico la pagina per mostrare anche il nuovo commento
-		return "redirect:/libro/" + id;
+		return "redirect:/Prodotto/" + id;
 	}
 
 	/**
 	 * metodo che gestisce la cancellazione da parte dell'utente della commento
 	 **/
-	@GetMapping("/libro/{id}/commento/delete")
+	@GetMapping("/Prodotto/{id}/commento/delete")
 	public String deleteCommento(@RequestParam Long id) {
 
 		try {
@@ -87,11 +87,11 @@ public class UtenteToCommentoController {
 	/**
 	 * metodo per gestire la rimozione della commento dell'utente
 	 * 
-	 * @return la pagina del libro senza la commento
+	 * @return la pagina del Prodotto senza la commento
 	 */
 	/*
-	 * @PostMapping("/libro/{libroId}/commento/{commentoId}/delete") public
-	 * String deleteUserCommento(@PathVariable Long libroId, @PathVariable Long
+	 * @PostMapping("/Prodotto/{ProdottoId}/commento/{commentoId}/delete") public
+	 * String deleteUserCommento(@PathVariable Long ProdottoId, @PathVariable Long
 	 * commentoId, Principal principal, RedirectAttributes redirectAttrs) {
 	 * 
 	 * try { // principal.getName() deve restituire il cognome con cui hai fatto il
@@ -107,12 +107,12 @@ public class UtenteToCommentoController {
 	 * } catch (AccessDeniedException e) { redirectAttrs.addFlashAttribute("error",
 	 * "Non puoi cancellare commenti di altri utenti"); }
 	 * 
-	 * return "redirect:/libro/" + libroId; }
+	 * return "redirect:/Prodotto/" + ProdottoId; }
 	 */
 
-	@PostMapping("/libro/{libroId}/commento/{commentoId}/delete")
+	@PostMapping("/Prodotto/{ProdottoId}/commento/{commentoId}/delete")
 	public String deleteUserCommento(
-	        @PathVariable Long libroId,
+	        @PathVariable Long ProdottoId,
 	        @PathVariable Long commentoId,
 	        Authentication authentication,
 	        RedirectAttributes redirectAttrs) {
@@ -147,7 +147,7 @@ public class UtenteToCommentoController {
 	        redirectAttrs.addFlashAttribute("error", "Non puoi cancellare commenti di altri utenti");
 	    }
 
-	    return "redirect:/libro/" + libroId;
+	    return "redirect:/Prodotto/" + ProdottoId;
 	}
 
 }

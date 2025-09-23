@@ -1,4 +1,4 @@
-Libri
+Prodotti
 	titolo, anno di pubblicazione, immagine (una o molte), autore (uno o molti) 
 	
 Autore 
@@ -12,10 +12,10 @@ Recensione
 N.B. ----> al sistema possono accedere utenti occasionali, registrati e amministratori
 
 
-Gli utenti occasionali possono consultare tutte le informazioni sui libri ( + le recensioni) 
+Gli utenti occasionali possono consultare tutte le informazioni sui Prodotti ( + le recensioni) 
 e sugli autori ma non possono modificare i dati.
 
 Gli utenti registrati possono sia consultare le informazioni, aggiungere recensioni
 
-Gli amministratori possono aggiungere, modificare, cancellare libri e autori. Gli 
+Gli amministratori possono aggiungere, modificare, cancellare Prodotti e autori. Gli 
 amministratori possono anche cancellare le recensioni ma non possono modificarle

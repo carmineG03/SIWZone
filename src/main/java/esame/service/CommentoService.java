@@ -32,7 +32,7 @@ public class CommentoService {
 
 	@Transactional
 	public void aggiungiCommento(Long prodId, CommentoDTO dto, String surname) {
-		// 1) carica il libro o fallisci
+		// 1) carica il Prodotto o fallisci
 		Prodotto prodotto = prodRepo.findById(prodId)
 				.orElseThrow(() -> new EntityNotFoundException("Prodotto non trovato: " + prodId));
 

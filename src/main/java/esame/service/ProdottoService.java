@@ -34,18 +34,18 @@ public class ProdottoService {
 	private CommentoRepository commentoRepository;
 
 	/**
-	 * metodo per salvare l'entità libro
+	 * metodo per salvare l'entità Prodotto
 	 * 
-	 * @param l'oggetto Libro da salvare
+	 * @param l'oggetto Prodotto da salvare
 	 **/
-	public void save(Prodotto libro) {
-		prodottoRepository.save(libro);
+	public void save(Prodotto Prodotto) {
+		prodottoRepository.save(Prodotto);
 	}
 
 	/**
-	 * metodo per vedere tutti gli autori
+	 * metodo per vedere tutti gli prodotti
 	 * 
-	 * @param id degli autori
+	 * @param id degli prodotti
 	 * @throws Exception
 	 **/
 	public Prodotto get(Long id) throws Exception {
@@ -65,7 +65,7 @@ public class ProdottoService {
 			throw new EntityNotFoundException("Prodotto non trovato");
 		}
 
-		// Estrae il libro, forza il caricamento delle commenti e lo restituisce
+		// Estrae il Prodotto, forza il caricamento delle commenti e lo restituisce
 		Prodotto prodotto = optProd.get();
 		prodotto.getCommenti().size(); // forza fetch delle commenti
 		return prodotto;
@@ -91,7 +91,7 @@ public class ProdottoService {
 	@Transactional
 	public void aggiungiImmagine(Long prodId, MultipartFile file) throws IOException {
 
-		// prendo l'oggetto libro
+		// prendo l'oggetto Prodotto
 		Prodotto prodotto = prodottoRepository.findById(prodId)
 				.orElseThrow(() -> new EntityNotFoundException("Prodotto non trovato"));
 

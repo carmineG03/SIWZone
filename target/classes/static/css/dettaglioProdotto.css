@@ -101,203 +101,35 @@
 }
 
 /*───────────────────────────────────────────────────────────────────────────  
-   Sezione Commenti - Design Moderno
+   Sezione Commenti
 ───────────────────────────────────────────────────────────────────────────*/
 
 .comments-section {
     margin-top: 50px;
-    padding: 30px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.comments-section h3 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 30px;
-    text-align: center;
-    position: relative;
-}
-
-.comments-section h3::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #3498db, #2980b9);
-    border-radius: 2px;
 }
 
 .add-comment-form {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    padding: 30px;
-    border-radius: 15px;
-    margin-bottom: 40px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    border: 1px solid rgba(52, 152, 219, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.add-comment-form::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #3498db, #2980b9, #3498db);
-    animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-    0% { background-position: -200px 0; }
-    100% { background-position: 200px 0; }
-}
-
-.add-comment-form h5 {
-    color: #2c3e50;
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.add-comment-form h5::before {
-    content: '💬';
-    font-size: 1.2rem;
-}
-
-.add-comment-form textarea {
-    border: 2px solid #e9ecef !important;
-    border-radius: 12px !important;
-    padding: 15px !important;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    resize: vertical;
-    min-height: 120px;
-    background: #ffffff;
-}
-
-.add-comment-form textarea:focus {
-    border-color: #3498db !important;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1) !important;
-    background: #fdfdfd;
-}
-
-.add-comment-form .btn-primary {
-    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-    border: none;
-    padding: 12px 30px;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.add-comment-form .btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transition: width 0.6s, height 0.6s;
-    transform: translate(-50%, -50%);
-}
-
-.add-comment-form .btn-primary:hover::before {
-    width: 300px;
-    height: 300px;
-}
-
-.add-comment-form .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
-    background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
 }
 
 .login-prompt {
-    background: linear-gradient(135deg, #ecf0f1 0%, #d5dbdb 100%);
-    padding: 30px;
-    border-radius: 15px;
-    margin-bottom: 40px;
+    background: #e9ecef;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
     text-align: center;
-    border-left: 4px solid #f39c12;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.login-prompt p {
-    margin: 0;
-    font-size: 1.1rem;
-    color: #2c3e50;
-    font-weight: 500;
-}
-
-.login-prompt a {
-    color: #3498db;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.login-prompt a:hover {
-    color: #2980b9;
-    text-decoration: underline;
 }
 
 .comment-item {
-    background: linear-gradient(135deg, #ffffff 0%, #fdfdfd 100%);
-    padding: 25px;
-    border-radius: 15px;
-    margin-bottom: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
     border-left: 4px solid #3498db;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.comment-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, #3498db, #2980b9);
-}
-
-.comment-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-}
-
-.comment-item::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #3498db, #2980b9);
-    transition: width 0.3s ease;
-}
-
-.comment-item:hover::after {
-    width: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .comment-header {
@@ -305,338 +137,21 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #ecf0f1;
 }
 
 .comment-header strong {
     color: #2c3e50;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.comment-header strong::before {
-    content: '';
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 50%;
-    margin-right: 12px;
-    vertical-align: middle;
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-}
-
-.comment-header strong i {
-    color: #3498db;
-    font-size: 1rem;
-}
-
-.comment-header .text-muted {
-    color: #7f8c8d !important;
-    font-size: 0.9rem;
-    font-weight: 400;
-}
-
-.comment-header .btn-group {
-    display: flex;
-    gap: 5px;
-}
-
-.comment-header .btn-sm {
-    padding: 6px 12px;
-    font-size: 0.875rem;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-}
-
-.comment-header .btn-outline-primary {
-    border-color: #3498db;
-    color: #3498db;
-}
-
-.comment-header .btn-outline-primary:hover {
-    background: #3498db;
-    transform: translateY(-1px);
-    box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
-}
-
-.comment-header .btn-outline-danger {
-    border-color: #e74c3c;
-    color: #e74c3c;
-}
-
-.comment-header .btn-outline-danger:hover {
-    background: #e74c3c;
-    transform: translateY(-1px);
-    box-shadow: 0 3px 10px rgba(231, 76, 60, 0.3);
 }
 
 .comment-text {
-    line-height: 1.7;
-    color: #34495e;
-    font-size: 1rem;
-}
-
-.comment-text p {
-    margin: 0;
-    word-wrap: break-word;
+    line-height: 1.6;
+    color: #555;
 }
 
 .no-comments {
     text-align: center;
-    padding: 60px 20px;
-    color: #95a5a6;
-    background: linear-gradient(135deg, #ecf0f1 0%, #d5dbdb 100%);
-    border-radius: 15px;
-    margin: 20px 0;
-}
-
-.no-comments i {
-    color: #bdc3c7;
-    margin-bottom: 20px;
-    display: block;
-}
-
-.no-comments p {
-    font-size: 1.1rem;
-    margin: 0;
-    font-weight: 500;
-}
-
-/* Animazioni */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.comment-item {
-    animation: fadeInUp 0.5s ease-out;
-}
-
-.comment-item:nth-child(even) {
-    animation-delay: 0.1s;
-}
-
-.comment-item:nth-child(odd) {
-    animation-delay: 0.2s;
-}
-
-/* Badge per nuovo commento */
-.new-comment-badge {
-    position: absolute;
-    top: -5px;
-    right: 15px;
-    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-    color: white;
-    padding: 3px 8px;
-    border-radius: 10px;
-    font-size: 0.75rem;
-    font-weight: 600;
-}
-
-/* Effetti aggiuntivi per la sezione commenti */
-
-/* Pulsante Pubblica Commento con effetti speciali */
-.add-comment-form .btn-primary {
-    position: relative;
-    overflow: hidden;
-}
-
-.add-comment-form .btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transition: width 0.6s, height 0.6s;
-    transform: translate(-50%, -50%);
-}
-
-.add-comment-form .btn-primary:hover::before {
-    width: 300px;
-    height: 300px;
-}
-
-/* Avatar placeholder per i commenti */
-.comment-header strong::before {
-    content: '';
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 50%;
-    margin-right: 12px;
-    vertical-align: middle;
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-}
-
-/* Bordo animato per i commenti */
-.comment-item::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #3498db, #2980b9);
-    transition: width 0.3s ease;
-}
-
-.comment-item:hover::after {
-    width: 100%;
-}
-
-/* Effetto typing per la textarea */
-.add-comment-form textarea {
-    position: relative;
-}
-
-.add-comment-form textarea:focus {
-    animation: typing 0.5s ease-in-out;
-}
-
-@keyframes typing {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.02); }
-    100% { transform: scale(1); }
-}
-
-/* Contatore caratteri stilizzato */
-.char-counter {
-    text-align: right;
-    font-size: 0.85rem;
-    color: #7f8c8d;
-    margin-top: 5px;
-    font-weight: 500;
-}
-
-/* Effetto parallax per il background della sezione commenti */
-.comments-section {
-    position: relative;
-    background-attachment: fixed;
-}
-
-.comments-section::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(45deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.1));
-    border-radius: 25px;
-    z-index: -1;
-    filter: blur(10px);
-}
-
-/* Indicatore di nuovo commento */
-.comment-item.new-comment {
-    animation: newCommentPulse 2s ease-in-out;
-    border-left-color: #f39c12;
-}
-
-@keyframes newCommentPulse {
-    0%, 100% { box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
-    50% { box-shadow: 0 8px 30px rgba(243, 156, 18, 0.3); }
-}
-
-/* Tooltip per i pulsanti */
-.btn-outline-primary, .btn-outline-danger {
-    position: relative;
-}
-
-.btn-outline-primary:hover::after,
-.btn-outline-danger:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #2c3e50;
-    color: white;
-    padding: 5px 8px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    white-space: nowrap;
-    z-index: 1000;
-    margin-bottom: 5px;
-}
-
-/* Effetto scroll smooth per i commenti */
-.comments-list {
-    scroll-behavior: smooth;
-}
-
-/* Evidenziazione del commento attivo */
-.comment-item:target {
-    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-    border-left-color: #f39c12;
-    animation: highlightComment 3s ease-in-out;
-}
-
-@keyframes highlightComment {
-    0% { background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); }
-    100% { background: linear-gradient(135deg, #ffffff 0%, #fdfdfd 100%); }
-}
-
-/* Miglioramento responsive per dispositivi touch */
-@media (hover: none) and (pointer: coarse) {
-    .comment-item:hover {
-        transform: none;
-    }
-    
-    .add-comment-form .btn-primary:hover {
-        transform: none;
-    }
-    
-    .comment-item:active {
-        transform: scale(0.98);
-    }
-}
-
-/* Indicatore di caricamento per i commenti */
-.loading-comments {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 40px;
-}
-
-.loading-comments::after {
-    content: '';
-    width: 40px;
-    height: 40px;
-    border: 4px solid #e9ecef;
-    border-top: 4px solid #3498db;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Miglioramento delle animazioni con reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .comment-item,
-    .add-comment-form .btn-primary,
-    .comment-item::after {
-        animation: none;
-        transition: none;
-    }
+    color: #7f8c8d;
 }
 
 /*───────────────────────────────────────────────────────────────────────────  

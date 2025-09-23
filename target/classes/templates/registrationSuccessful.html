@@ -2,33 +2,13 @@
 <html>
 
 <head>
-	<title>SIWZone - Registrazione completata</title>
-	<link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
-	<link href="/css/authStyles.css" rel="stylesheet" type="text/css">
+	<title>FiloClick - Registrazione conclusa</title>
+	<link href="/css/stileRegistrazioneSuccesso.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-	<!-- Navbar -->
-	<div class="navbar" id="navbar">
-		<div class="nav-links">
-			<a href="/">Home</a>
-			<a href="/showAllProdotti">Prodotti</a>
-		</div>
 
-		<div class="search-bar">
-			<form th:action="@{/ricercaHome}" method="POST">
-				<input type="text" name="keyword" placeholder="Cerca...">
-				<button type="submit">Cerca</button>
-			</form>
-		</div>
-
-		<div class="auth-links">
-			<a href="/login">Login</a>
-		</div>
-		<span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
-	</div>
-
-	<!-- VEDERE SE LASCIARE QUESTA ROBA
+	<!-- VEDERE SE LASCIARE QUESTA ROBA-->
 	<header>
 		<div th:if="${userDetails}">
 			<span th:text="${userDetails.username}"></span>
@@ -38,49 +18,19 @@
 			<a href="/login">Login</a>
 		</div>
 	</header>
-	-->
+	<!--_______________________________________________________-->
 
-	<div class="main-content">
-		<div class="container main-block" style="text-align: center;">
-			<h1><i class="fas fa-check-circle" style="color: #059669;"></i> Registrazione Completata!</h1>
-			<p>Ciao <strong th:text="${user.name}">Nome</strong>!</p>
-			<p>Grazie per esserti registrato su SIWZone. La tua registrazione è stata completata con successo.</p>
+	<div class="container">
+		<h1>Registrazione Avvenuta con Successo!</h1>
+		<span th:text="${user.name}"> </span>
+		<p>Grazie per esserti registrato. La tua registrazione &egrave; stata completata
+			con successo</p>
 
-			<a href="/login" class="button">
-				<i class="fas fa-sign-in-alt"></i> Vai al Login
-			</a>
+		<a href="/homepage" class="button">Torna al login</a>
 
-			<!-- qui si può continuare mettendo altre informazioni dell'utente -->
-		</div>
+		<!-- qui si può continuare mettendo altre informazioni dell'utente -->
 	</div>
 
-	<script>
-		function toggleMenu() {
-			var navbar = document.getElementById('navbar');
-			navbar.classList.toggle('responsive');
-		}
-	</script>
-
-	<!-- Footer -->
-	<footer class="footer">
-		<div class="footer-content">
-			<div class="footer-section">
-				<h3>SIWZone</h3>
-				<p>Benvenuto! La tua registrazione è stata completata con successo.</p>
-			</div>
-			<div class="footer-section">
-				<h3>Link Utili</h3>
-				<ul>
-					<li><a href="/">Home</a></li>
-					<li><a href="/login">Login</a></li>
-					<li><a href="/showAllProdotti">Prodotti</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
-		</div>
-	</footer>
 
 </body>
 

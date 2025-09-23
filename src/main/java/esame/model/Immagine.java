@@ -37,7 +37,7 @@ public class Immagine {
 	private byte[] dati;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "libro_id", nullable = true)
+	@JoinColumn(name = "Prodotto_id", nullable = true)
 	private Prodotto prodotto;
 	
 

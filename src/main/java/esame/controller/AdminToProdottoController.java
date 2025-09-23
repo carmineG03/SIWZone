@@ -90,7 +90,7 @@ public class AdminToProdottoController {
 	 * meotodo per gestire l'inizializzazione del prodotto da parte dell'admin
 	 * 
 	 * @param ProdottoDTO
-	 * @return entità Libro salvata e ritorno alla visualizzazione di tutti i prodotti
+	 * @return entità Prodotto salvata e ritorno alla visualizzazione di tutti i prodotti
 	 * @throws IOException
 	 **/
 	// 3) Salva Prodotto + immagini dal DTO
@@ -141,7 +141,7 @@ public class AdminToProdottoController {
 	 * @param immagine da inserire
 	 **/
 	@PostMapping("/admin/prodotto/{id}/immagineProdotto")
-	public String uploadImmagineLibro(@PathVariable Long id, @RequestParam("file") MultipartFile file,
+	public String uploadImmagineProdotto(@PathVariable Long id, @RequestParam("file") MultipartFile file,
 			RedirectAttributes redirectAttribute) {
 
 		try {
@@ -181,7 +181,7 @@ public class AdminToProdottoController {
 
 		try {
 
-			// mi prendo il libro corrispondente all'id
+			// mi prendo il Prodotto corrispondente all'id
 			Prodotto prodotto = prodottoRepository.findById(id).get();
 			model.addAttribute("prodotto", prodotto);
 

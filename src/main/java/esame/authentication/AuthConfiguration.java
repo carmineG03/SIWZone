@@ -49,7 +49,7 @@ public class AuthConfiguration {
 
 								// 1) risorse pubbliche (home, login, register, static)
 				.requestMatchers(HttpMethod.GET, "/", "/index", "/login", "/register", "/css/**", "/images/**",
-						"/favicon.ico","/ricercaHome","/showAllLibri","/showAllAutori","/showAllProdotti",
+						"/favicon.ico","/ricercaHome","/showAllProdotti",
 						"/prodotti/categoria/**")
 				.permitAll()
 
@@ -58,10 +58,10 @@ public class AuthConfiguration {
 				.requestMatchers(HttpMethod.POST, "/ricercaHome","/register","/ricercaProdotti").permitAll()
 
 				// 3) area “post‐login” – solo loggati (ROLE_USER e ROLE_ADMIN)
-				.requestMatchers(HttpMethod.GET, "/success", "/profile","/admin/**","/libro/**", "/libro/immagine/**").authenticated()
+				.requestMatchers(HttpMethod.GET, "/success", "/profile","/admin/**").authenticated()
 
 				// 4) amministrazione – solo ADMIN
-				.requestMatchers("/admin/**","/autore/**","/libro/**").hasAuthority(ADMIN_ROLE)
+				.requestMatchers("/admin/**").hasAuthority(ADMIN_ROLE)
 
 				// 5) qualunque altra richiesta richiede autenticazione
 				.anyRequest().authenticated()
