@@ -23,7 +23,7 @@
 		<!--barra di ricerca-->
 		<div class="search-bar">
 			<form th:action="@{/ricercaHome}" method="POST">
-				<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca...">
+				<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca Prodotti...">
 				<button type="submit">Cerca</button>
 			</form>
 		</div>
@@ -95,7 +95,7 @@
 				<li><a th:href="@{/prodotti/categoria/Prodotti}">Prodotti</a></li>
 				<li><a th:href="@{/prodotti/categoria/Informatica}">Informatica</a></li>
 				<li><a th:href="@{/prodotti/categoria/Elettronica}">Elettronica</a></li>
-				<li><a th:href="@{/prodotti/categoria/Auto}">Auto e Moto</a></li>
+				<li><a th:href="@{/prodotti/categoria/Auto e Moto}">Auto e Moto</a></li>
 				<li><a th:href="@{/prodotti/categoria/Sport}">Articoli Sportivi</a></li>
 			</ul>
 		</div>

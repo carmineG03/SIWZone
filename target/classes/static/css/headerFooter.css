@@ -27,6 +27,8 @@
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .navbar .logo {
@@ -83,24 +85,39 @@
   color: #ffffff;
 }
 
-/* Search Bar */
+/* Search Bar - Forced Horizontal Layout */
+.navbar .search-bar {
+  flex-shrink: 0;
+  display: flex !important;
+}
+
 .navbar .search-bar form {
-  display: flex;
+  display: flex !important;
+  flex-direction: row !important;
   align-items: center;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 2rem;
   padding: 0.25rem;
   backdrop-filter: blur(10px);
+  min-width: 280px;
+  max-width: 500px;
+  flex-wrap: nowrap !important;
+  overflow: hidden;
+  gap: 0 !important;
 }
 
 .navbar .search-bar form input[type="text"] {
-  flex: 1;
+  flex: 1 1 auto !important;
+  min-width: 120px !important;
+  max-width: none !important;
   padding: 0.75rem 1rem;
   border: none;
   background: transparent;
   color: #ffffff;
   outline: none;
   font-size: 1rem;
+  width: auto !important;
+  display: inline-block !important;
 }
 
 .navbar .search-bar form input[type="text"]::placeholder {
@@ -108,6 +125,7 @@
 }
 
 .navbar .search-bar form button {
+  flex: 0 0 auto !important;
   padding: 0.75rem 1.25rem;
   border: none;
   background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
@@ -116,10 +134,42 @@
   cursor: pointer;
   transition: transform 0.3s ease;
   font-weight: 600;
+  white-space: nowrap !important;
+  display: inline-block !important;
+  width: auto !important;
+  margin-left: 0 !important;
 }
 
 .navbar .search-bar form button:hover {
   transform: scale(1.05);
+}
+
+/* OVERRIDE GLOBALE PER SEARCH-BAR - LAYOUT SEMPRE ORIZZONTALE */
+.navbar .search-bar form,
+div.navbar div.search-bar form,
+.navbar > .search-bar > form {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+}
+
+.navbar .search-bar form input,
+.navbar .search-bar form input[type="text"],
+div.navbar div.search-bar form input[type="text"] {
+  display: inline-block !important;
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 100px !important;
+}
+
+.navbar .search-bar form button,
+div.navbar div.search-bar form button {
+  display: inline-block !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  float: none !important;
+  clear: none !important;
 }
 
 /* Dropdown */
@@ -286,11 +336,34 @@
   .navbar .search-bar {
     margin: 1rem 0;
     width: 100%;
+    max-width: 400px;
+    display: flex !important;
   }
 
   .navbar .search-bar form {
-    flex-direction: column;
-    gap: 0.5rem;
+    flex-direction: row !important;
+    gap: 0 !important;
+    min-width: 250px !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .navbar .search-bar form input[type="text"] {
+    min-width: 120px !important;
+    flex: 1 1 auto !important;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    display: inline-block !important;
+    width: auto !important;
+  }
+
+  .navbar .search-bar form button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    white-space: nowrap !important;
+    display: inline-block !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
   }
 
   .footer-content {
@@ -300,5 +373,32 @@
 
   .footer-social {
     justify-content: center;
+  }
+}
+
+/* Responsive aggiuntivo per schermi molto piccoli */
+@media (max-width: 480px) {
+  .navbar .search-bar form {
+    min-width: 220px !important;
+    padding: 0.125rem;
+    flex-direction: row !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+  }
+  
+  .navbar .search-bar form input[type="text"] {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    min-width: 100px !important;
+    flex: 1 1 auto !important;
+    display: inline-block !important;
+  }
+  
+  .navbar .search-bar form button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    flex: 0 0 auto !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
   }
 }

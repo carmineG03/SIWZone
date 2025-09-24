@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>esame</groupId>
-	<artifactId>SiwBooks</artifactId>
+	<artifactId>SIWZone</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SiwBooks</name>
+	<name>SIWZone</name>
 	<description>Sito ufficiale</description>
 	<url />
 	<licenses>

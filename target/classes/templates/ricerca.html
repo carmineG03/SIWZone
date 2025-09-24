@@ -23,7 +23,7 @@
 		<!--barra di ricerca-->
 		<div class="search-bar">
 			<form th:action="@{/ricercaHome}" method="POST">
-				<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca...">
+				<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca Prodotti...">
 				<button type="submit">Cerca</button>
 			</form>
 		</div>
@@ -44,60 +44,79 @@
 		<span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
 	</div>
 
-	<!--div principale, rappresenta la prima cosa che vede l'utente quando entra-->
-	<div class="hero">
-		<h1>Benvenuti su SIWZone</h1>
-		<p>Scopri i nostri Prodotti esclusivi.</p>
-		<a href="/showAllProdotti" class="cta-button">Scopri di pi&uacute;</a>
+	<!--div principale con messaggio di ricerca-->
+	<div class="hero search-hero">
+		<h1><i class="fas fa-search mr-2"></i>Ricerca Prodotti</h1>
+		<p>Trova quello che stai cercando nel nostro catalogo</p>
+		<div class="search-stats" th:if="${keyword}">
+			<span class="search-keyword">
+				<i class="fas fa-quote-left"></i> <span th:text="${keyword}">termine ricerca</span> <i class="fas fa-quote-right"></i>
+			</span>
+		</div>
 	</div>
 
 
 
-	<div class="products">
-		<h2>I nostri prodotti</h2><br>
-		<hr>
-		<br><br><br>
+	<!-- Sezione risultati ricerca -->
+	<div class="search-results-section">
+		<div class="content-container">
+			<div class="page-header">
+				<h1><i class="fas fa-search mr-2"></i>Risultati della ricerca</h1>
+				<p th:if="${keyword}" class="search-query">
+					Hai cercato: "<strong th:text="${keyword}">termine ricerca</strong>"
+				</p>
+			</div>
 
-		<ul class="product-list">
-
-			<!-- Se la lista è non vuota, itera sui prodotti -->
-			<th:block th:if="${prodotti}">
-				<li th:each="prodotto : ${prodotti}" class="prodotto-item">
-					<div class="product-item">
+			<!-- Griglia prodotti -->
+			<div class="products-grid">
+				<!-- Se la lista è non vuota, itera sui prodotti -->
+				<th:block th:if="${prodotti}">
+					<div th:each="prodotto : ${prodotti}" class="product-card fade-in-up">
 						<!-- Link al dettaglio prodotto -->
-						<a th:href="@{/prodotto/{id}(id=${prodotto.id})}">
+						<a th:href="@{/prodotto/{id}(id=${prodotto.id})}" style="text-decoration: none;">
 
 							<!-- Copertina: prima immagine o placeholder -->
-							<img th:if="${#lists.isEmpty(prodotto.immagini)}" src="/images/placeholder.png"
-								alt="No cover" />
+							<img th:if="${#lists.isEmpty(prodotto.immagini)}" 
+								 src="/images/placeholder.png"
+								 alt="No cover" />
 
 							<!-- Se ci sono immagini, mostra la prima -->
-							<img th:if="${!#lists.isEmpty(prodotto.immagini)}" th:src="@{/prodotto/immagine/{iid}
-								                      (iid=${prodotto.immagini[0].id})}"
-								th:alt="'Copertina di ' + ${prodotto.nome}" />
-						</a>
+							<img th:if="${!#lists.isEmpty(prodotto.immagini)}" 
+								 th:src="@{/prodotto/immagine/{iid}(iid=${prodotto.immagini[0].id})}"
+								 th:alt="'Copertina di ' + ${prodotto.nome}" />
 
-						<!-- Nome -->
-						<h3 th:text="${prodotto.nome}">Nome Prodotto</h3>
+							<!-- Nome -->
+							<h3 th:text="${prodotto.nome}">Nome Prodotto</h3>
 
-						<!-- Prezzo -->
-						<p class="price" th:text="${prodotto.prezzo}">Prezzo</p>
+							<!-- Prezzo se disponibile -->
+							<p th:if="${prodotto.prezzo}" class="product-price" th:text="'&euro; ' + ${prodotto.prezzo}" th:utext="'&euro; ' + ${prodotto.prezzo}">Prezzo</p>
 
-						<!-- Link azione -->
-						<a th:href="@{/prodotto/{id}(id=${prodotto.id})}" class="details">
-							Dettagli
+							<!-- Link azione -->
+							<div class="btn">
+								<i class="fas fa-eye mr-1"></i>Dettagli
+							</div>
 						</a>
 					</div>
-				</li>
-			</th:block>
+				</th:block>
 
-			<!-- Se la lista è vuota, mostra un messaggio -->
-			<th:block th:if="${#lists.isEmpty(prodotti)}">
-				<li>
-					<p>Nessun prodotto disponibile.</p>
-				</li>
-			</th:block>
-		</ul>
+				<!-- Se la lista è vuota, mostra un messaggio -->
+				<th:block th:if="${#lists.isEmpty(prodotti)}">
+					<div class="no-results-card">
+						<i class="fas fa-search-minus"></i>
+						<h3>Nessun risultato trovato</h3>
+						<p th:if="${keyword}">
+							La tua ricerca per "<strong th:text="${keyword}">termine</strong>" non ha prodotto risultati.
+						</p>
+						<p th:unless="${keyword}">
+							Prova a cercare un prodotto utilizzando la barra di ricerca.
+						</p>
+						<a href="/showAllProdotti" class="btn btn-primary">
+							<i class="fas fa-shopping-bag mr-1"></i>Vedi tutti i prodotti
+						</a>
+					</div>
+				</th:block>
+			</div>
+		</div>
 	</div>
 
 	<!--quando lo schermo diventa troppo piccolo questo script fa diminuire in automatico la navbar-->
@@ -107,47 +126,6 @@
 			navbar.classList.toggle('responsive');
 		}
 	</script>
-
-	<!-- CONTENITORE SEZIONI IN LINEA -->
-	<div class="info-sections"
-		style="display:flex; flex-wrap:wrap; justify-content:center; gap:40px; padding:50px 20px; background:#fff;">
-
-		<!-- SEZIONE CATEGORIE -->
-		<div class="categories" style="flex:1 1 300px; max-width:400px;">
-			<h2>Le Nostre Categorie</h2>
-			<hr>
-			<ul class="no-bullets" style="margin-top:20px;">
-				<li><a href="#">Giardinaggio</a></li>
-				<li><a href="#">Prodotti</a></li>
-				<li><a href="#">Informatica</a></li>
-				<li><a href="#">Elettronica</a></li>
-				<li><a href="#">Auto e Moto</a></li>
-				<li><a href="#">Articoli Sportivi</a></li>
-			</ul>
-		</div>
-
-		<!-- SEZIONE CONTATTI -->
-		<div class="contact" style="flex:1 1 300px; max-width:400px;">
-			<h2>Contattaci</h2>
-			<hr>
-			<div class="contact-info" style="margin-top:20px; line-height:1.6; text-align:left;">
-				<p><strong>Email:</strong> info@SIWZone.it</p>
-				<p><strong>Telefono:</strong> +39 06 1234 5678</p>
-				<p><strong>Indirizzo:</strong> Via Roma 100, Nettuno (RM)</p>
-			</div>
-			<div class="social-icons">
-				<a href="https://facebook.com" aria-label="Facebook" target="_blank">
-					<i class="fab fa-facebook-f"></i>
-				</a>
-				<a href="https://instagram.com" aria-label="Instagram" target="_blank">
-					<i class="fab fa-instagram"></i>
-				</a>
-				<a href="https://twitter.com" aria-label="Twitter" target="_blank">
-					<i class="fab fa-twitter"></i>
-				</a>
-			</div>
-		</div>
-	</div>
 
 
 	<!-- Footer -->

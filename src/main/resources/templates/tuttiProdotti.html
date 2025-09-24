@@ -8,7 +8,6 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 	<link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
 	<link href="/css/stileIndex.css" rel="stylesheet" type="text/css">
-	<!--<meta http-equiv="refresh" content="10">-->
 </head>
 
 <body>
@@ -17,26 +16,20 @@
 	<div class="navbar" id="navbar">
 		<div class="nav-links">
 			<a href="/">Home</a>
-			<a th:if="${userDetails != null and userDetails.authorities.?[authority == 'ADMIN'].size() > 0}" href="/admin/success">Area Riservata</a>
-
-		
+			<a href="/showAllProdotti">Prodotti</a>
 		</div>
 
 		<!--barra di ricerca-->
 		<div class="search-bar">
-			<form th:action="@{/ricercaProdotti}" method="POST">
-				<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca prodotti...">
+			<form th:action="@{/ricercaHome}" method="POST">
+				<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca Prodotti...">
 				<button type="submit">Cerca</button>
 			</form>
 		</div>
 
-
-
 		<!--login e registrazione in alto a destra-->
 		<div th:if="${userDetails}" class="auth-links">
-			<a>
-				<span th:text="${userDetails.username}"></span>
-			</a>
+			<span th:text="${userDetails.username}"></span>
 			<a href="/logout">Logout</a>
 		</div>
 		<div th:unless="${userDetails}" class="auth-links">
@@ -46,67 +39,68 @@
 		<span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
 	</div>
 
+	<!-- Main Content -->
+	<div class="main-content">
+		<div class="content-container fade-in">
+			<div class="page-header">
+				<h1><i class="fas fa-shopping-bag mr-2"></i>I nostri prodotti</h1>
+			</div>
+			
+			<!-- Mostra informazioni filtro -->
+			<div th:if="${categoriaSelezionata != null}" class="card mt-3 mb-4" style="background: linear-gradient(135deg, #e0f2fe 0%, #f3e5f5 100%); border: 1px solid var(--primary-color);">
+				<div class="flex items-center gap-2">
+					<i class="fas fa-filter" style="color: var(--primary-color);"></i> 
+					<strong>Categoria:</strong> <span th:text="${categoriaSelezionata}">Categoria</span>
+					<span th:if="${totaleProdotti != null}"> - <span th:text="${totaleProdotti}">0</span> prodotti trovati</span>
+					<a th:href="@{/showAllProdotti}" class="btn btn-primary" style="margin-left: auto;">
+						<i class="fas fa-times mr-1"></i>Rimuovi filtro
+					</a>
+				</div>
+			</div>
 
-	<div class="products">
-		<h2>I nostri prodotti</h2>
-		
-		<!-- Mostra informazioni filtro -->
-		<div th:if="${categoriaSelezionata != null}" style="background: #e7f3ff; padding: 10px; border-radius: 5px; margin: 10px 0;">
-			<i class="fas fa-filter"></i> 
-			<strong>Categoria:</strong> <span th:text="${categoriaSelezionata}">Categoria</span>
-			<span th:if="${totaleProdotti != null}"> - <span th:text="${totaleProdotti}">0</span> prodotti trovati</span>
-			<a th:href="@{/showAllProdotti}" style="margin-left: 10px; color: #007bff;">[Rimuovi filtro]</a>
-		</div>
-		
-		<br>
-		<hr>
-		<br><br><br>
-
-		<ul class="product-list">
-
-			<!-- Se la lista è non vuota, itera sui prodotti -->
-			<th:block th:if="${prodotti}">
-				<li th:each="prodotto : ${prodotti}" class="prodotto-item">
-					<div class="product-item">
+			<!-- Griglia prodotti -->
+			<div class="products-grid">
+				<!-- Se la lista è non vuota, itera sui prodotti -->
+				<th:block th:if="${prodotti}">
+					<div th:each="prodotto : ${prodotti}" class="product-card fade-in-up">
 						<!-- Link al dettaglio prodotto -->
-						<a th:href="@{/prodotto/{id}(id=${prodotto.id})}">
+						<a th:href="@{/prodotto/{id}(id=${prodotto.id})}" style="text-decoration: none;">
 
 							<!-- Copertina: prima immagine o placeholder -->
-							<img th:if="${#lists.isEmpty(prodotto.immagini)}" src="/images/placeholder.png"
-								alt="No cover" />
+							<img th:if="${#lists.isEmpty(prodotto.immagini)}" 
+								 src="/images/placeholder.png"
+								 alt="No cover" />
 
 							<!-- Se ci sono immagini, mostra la prima -->
-							<img th:if="${!#lists.isEmpty(prodotto.immagini)}" th:src="@{/prodotto/immagine/{iid}(iid=${prodotto.immagini[0].id})}"
-								th:alt="'Copertina di ' + ${prodotto.nome}" />
-						</a>
+							<img th:if="${!#lists.isEmpty(prodotto.immagini)}" 
+								 th:src="@{/prodotto/immagine/{iid}(iid=${prodotto.immagini[0].id})}"
+								 th:alt="'Copertina di ' + ${prodotto.nome}" />
 
-						<!-- Nome -->
-						<h3 th:text="${prodotto.nome}">Nome Prodotto</h3>
+							<!-- Nome -->
+							<h3 th:text="${prodotto.nome}">Nome Prodotto</h3>
 
-						<!-- Link azione -->
-						<a th:href="@{/prodotto/{id}(id=${prodotto.id})}" class="details">
-							Dettagli
+							<!-- Link azione -->
+							<div class="btn">
+								<i class="fas fa-eye mr-1"></i>Dettagli
+							</div>
 						</a>
 					</div>
-				</li>
-			</th:block>
+				</th:block>
 
-			<!-- Se la lista è vuota, mostra un messaggio -->
-			<th:block th:if="${#lists.isEmpty(prodotti)}">
-				<li>
-					<p>Nessun prodotto disponibile.</p>
-				</li>
-			</th:block>
-		</ul>
+				<!-- Se la lista è vuota, mostra un messaggio -->
+				<th:block th:if="${#lists.isEmpty(prodotti)}">
+					<div class="card text-center" style="grid-column: 1 / -1;">
+						<i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+						<h3>Nessun prodotto trovato</h3>
+						<p>Non ci sono prodotti disponibili al momento.</p>
+						<a href="/" class="btn btn-primary mt-3">
+							<i class="fas fa-home mr-1"></i>Torna alla Home
+						</a>
+					</div>
+				</th:block>
+			</div>
+		</div>
 	</div>
-	
-	<!--quando lo schermo diventa troppo piccolo questo script fa diminuire in automatico la navbar-->
-	<script>
-		function toggleMenu() {
-			var navbar = document.getElementById('navbar');
-			navbar.classList.toggle('responsive');
-		}
-	</script>
 
 	<!-- CONTENITORE SEZIONI IN LINEA -->
 	<div class="info-sections"
@@ -121,7 +115,7 @@
 				<li><a th:href="@{/prodotti/categoria/Prodotti}">Prodotti</a></li>
 				<li><a th:href="@{/prodotti/categoria/Informatica}">Informatica</a></li>
 				<li><a th:href="@{/prodotti/categoria/Elettronica}">Elettronica</a></li>
-				<li><a th:href="@{/prodotti/categoria/Auto}">Auto e Moto</a></li>
+				<li><a th:href="@{/prodotti/categoria/Auto e Moto}">Auto e Moto</a></li>
 				<li><a th:href="@{/prodotti/categoria/Sport}">Articoli Sportivi</a></li>
 			</ul>
 		</div>
@@ -131,7 +125,7 @@
 			<h2>Contattaci</h2>
 			<hr>
 			<div class="contact-info" style="margin-top:20px; line-height:1.6; text-align:left;">
-				<p><strong>Email:</strong> info@SIWZoneit</p>
+				<p><strong>Email:</strong> info@SIWZone.it</p>
 				<p><strong>Telefono:</strong> +39 06 1234 5678</p>
 				<p><strong>Indirizzo:</strong> Via Roma 100, Nettuno (RM)</p>
 			</div>
@@ -149,13 +143,12 @@
 		</div>
 	</div>
 
-
 	<!-- Footer -->
 	<footer class="footer">
 		<div class="footer-content">
 			<div class="footer-section">
 				<h3>SIWZone</h3>
-				<p>Scopri i nostri prodotti esclusivi e trova quello che stai cercando.</p>
+				<p>Scopri i nostri prodotti esclusivi e trova quello che stai cercando con il nostro design moderno e innovativo.</p>
 			</div>
 			<div class="footer-section">
 				<h3>Link Utili</h3>
@@ -171,6 +164,14 @@
 			<p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
 		</div>
 	</footer>
-	
+
+	<!--quando lo schermo diventa troppo piccolo questo script fa diminuire in automatico la navbar-->
+	<script>
+		function toggleMenu() {
+			var navbar = document.getElementById('navbar');
+			navbar.classList.toggle('responsive');
+		}
+	</script>
 
 </body>
+</html>

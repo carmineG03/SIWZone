@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Area Privata SIWZone</title>
 	<link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
-	<link href="/css/StileIndex.css" rel="stylesheet" type="text/css">
+	<link href="/css/stileIndex.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
 		<!--barra di ricerca-->
 		<div class="search-bar">
 			<form th:action="@{/ricercaHome}" method="post">
-				<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca...">
+				<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca Prodotti...">
 				<button type="submit">Cerca</button>
 			</form>
 		</div>
@@ -59,9 +59,6 @@
 			<ul class="no-bullets" style="margin-top:20px;">
 				<li><a href="/admin/prodotti">Gestisci Prodotti</a></li>
 				<li><a href="/admin/newProdotto">Aggiungi Prodotto</a></li>
-				<li><a href="/admin/utenti">Gestisci Utenti</a></li>
-				<li><a href="/admin/ordini">Visualizza Ordini</a></li>
-				<li><a href="/admin/statistiche">Statistiche</a></li>
 			</ul>
 		</div>
 

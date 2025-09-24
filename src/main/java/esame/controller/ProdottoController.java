@@ -19,6 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import esame.DTOmodel.CommentoDTO;
 import esame.model.Commento;
+import esame.model.Credentials;
 import esame.model.Immagine;
 import esame.model.Prodotto;
 
