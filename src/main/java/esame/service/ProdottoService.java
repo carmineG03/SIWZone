@@ -164,4 +164,19 @@ public class ProdottoService {
 	public List<Prodotto> findAll(){
 		return prodottoRepository.findAll();
 	}
+
+	/**
+	 * // PATTERN UNIVERSALE
+		public {ReturnType} get{FunzionalitaDescrizione}({Parametri}) {
+    		// 1. Validazione input (opzionale)
+    
+    		// 2. Chiamata repository
+    		{ReturnType} result = {repository}.{metodoRepository}({parametri});
+    
+    		// 3. Logica business aggiuntiva (opzionale)
+    
+    		// 4. Return
+    		return result;
+		}
+	 */
 }

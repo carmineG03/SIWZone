@@ -368,4 +368,42 @@ public class ProdottoController {
 		}
 	}
 
+	/**
+	 * // PATTERN 1: Nuova pagina
+		@GetMapping("/{nuova-funzione}")
+		public String {nomeFunzione}(Model model, {Parametri opzionali}) {
+   		 	// Recupera dati
+    		{TipoDati} dati = {service}.{metodoService}({parametri});
+    
+    		// Aggiungi al model
+    		model.addAttribute("{nomeAttributo}", dati);
+    
+    		return "{nomeTemplate}";
+		}
+	
+
+		// PATTERN 2: Aggiunta a pagina esistente  
+		@GetMapping("/{pagina-esistente}")
+		public String {metodoEsistente}(Model model, @RequestParam(required = false) String {filtro}) {
+    		// ...codice esistente...
+    
+    		// Nuova funzionalità
+    		if ({filtro} != null) {
+        		{TipoDati} datiSpeciali = {service}.{nuovoMetodo}({filtro});
+       		 model.addAttribute("{nuovoAttributo}", datiSpeciali);
+    		}
+    
+    		return "{templateEsistente}";
+		}
+
+		// PATTERN 3: Azione POST
+		@PostMapping("/{azione}")
+		public String {eseguiAzione}(@RequestParam {Tipo} {parametro}) {
+    		// Esegui azione
+    		{service}.{metodoAzione}({parametro});
+    
+    		return "redirect:/{paginaDestinazione}";
+		}
+	 */
+
 }

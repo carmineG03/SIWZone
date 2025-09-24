@@ -43,4 +43,25 @@ public interface ProdottoRepository extends JpaRepository<Prodotto, Long> {
 	 */
 	@Query("SELECT p FROM Prodotto p WHERE p.id = :id")
 	Optional<Prodotto> findByIdOptimized(@Param("id") Long id);
+
+	/**
+	 * Esempi di query personalizzate con @Query
+	 * Esempi di query personalizzate con @Query
+	 *
+	 * // PATTERN 1: Selezione con criteri
+	 * @Query("SELECT e FROM {Entity} e WHERE e.{campo} {operatore} :parametro")
+	 * List<{Entity}> find{Descrizione}(@Param("parametro") {Tipo} parametro);
+	 *
+	 * // PATTERN 2: Top N elementi
+	 * @Query("SELECT e FROM {Entity} e ORDER BY e.{campo} {ASC/DESC}")
+	 * List<{Entity}> findTop{N}By{Criterio}(Pageable pageable);
+	 *
+	 * // PATTERN 3: Con conteggio/aggregazione
+	 * @Query("SELECT e FROM {Entity} e LEFT JOIN e.{relazione} r GROUP BY e ORDER BY COUNT(r) DESC")
+	 * List<{Entity}> find{Descrizione}WithMost{Relazione}(Pageable pageable);
+	 *
+	 * // PATTERN 4: Query personalizzata
+	 * @Query("SELECT e FROM {Entity} e JOIN e.{relazione} r WHERE {condizioni}")
+	 * List<{Entity}> find{Descrizione}Custom();
+	 */
 }

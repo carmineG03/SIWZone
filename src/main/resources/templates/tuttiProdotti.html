@@ -175,3 +175,36 @@
 
 </body>
 </html>
+
+
+<!-- PATTERN 1: Bottone semplice 
+<a th:href="@{/{endpoint}}" class="btn btn-{colore}">
+    {Testo Bottone}
+</a> -->
+
+<!-- PATTERN 2: Bottone con parametro 
+<a th:href="@{/{endpoint}(parametro=${valore})}" class="btn btn-{colore}">
+    {Testo Bottone}
+</a> -->
+
+<!-- PATTERN 3: Form con azione 
+    <form th:action="@{/{endpoint}}" method="post">
+    <input type="hidden" name="{campo}" th:value="${valore}"/>
+    <button type="submit" class="btn btn-{colore}">
+        {Testo Bottone}
+    </button>
+</form> -->
+
+<!-- PATTERN 4: Display risultati 
+<div th:if="${{attributo} != null and !{attributo}.isEmpty()}">
+    <h3>{Titolo Sezione}</h3>
+    <div th:each="{item} : ${{attributo}}" class="{classe-css}">
+        <span th:text="${{item}.{proprietà}}"></span>
+          Altri campi... 
+    </div>
+</div> -->
+
+<!-- PATTERN 5: Display singolo elemento 
+<div th:if="${{elemento} != null}">
+    <p th:text="'Risultato: ' + ${{elemento}.{campo}}"></p>
+</div> -->
