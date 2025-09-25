@@ -20,7 +20,15 @@
 
         <div class="search-bar">
             <form th:action="@{/ricercaHome}" method="POST">
-                <input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca Prodotti...">
+                <input type="text" 
+                       name="keyword" 
+                       th:value="${keyword}" 
+                       placeholder="Cerca Prodotti..." 
+                       list="prodotti-datalist"
+                       autocomplete="off">
+                <datalist id="prodotti-datalist">
+                    <option th:each="nome : ${nomiProdotti}" th:value="${nome}"></option>
+                </datalist>
                 <button type="submit">Cerca</button>
             </form>
         </div>

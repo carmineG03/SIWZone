@@ -115,7 +115,7 @@ public class ProdottoController {
 	 *       model.addAttribute("nomeParametro", false);}
 	 */
 	@GetMapping("/showAllProdotti")
-	public String showAllProdotti(Model model, HttpServletResponse response, @RequestParam(value="topCommenti", required=false) String topCommenti) {
+	public String showAllProdotti(Model model, HttpServletResponse response /*, @RequestParam(value="topNome", required=false) String topNome*/) {
 		// Previeni caching
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 		response.setHeader("Pragma", "no-cache");
@@ -125,18 +125,18 @@ public class ProdottoController {
 		List<Prodotto> prodotti = prodottoRepository.findAll();
 		System.out.println("Totale prodotti: " + prodotti.size());
 
-		if("true".equals(topCommenti)) {
-			prodotti = prodottoRepository.findTopProdottiByCommenti();
+		/*if("true".equals(topNome)) {
+			prodotti = prodottoRepository.findAllOrderByNomeAsc();
 			if(prodotti.size() > 3) {
 				prodotti = prodotti.subList(0, 3); // Limita a top 3
 			}
 
-			model.addAttribute("isTopCommenti", true);
+			model.addAttribute("isTopNome", true);
 		}
 		else{
 			prodotti= prodottoRepository.findAll();
-			model.addAttribute("isTopCommenti", false);
-		}
+			model.addAttribute("isTopNome", false);
+		}*/
 		
 			// Debug: mostra prime 3 tipologie nel database
 		

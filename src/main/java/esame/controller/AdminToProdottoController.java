@@ -153,6 +153,12 @@ public class AdminToProdottoController {
 		return "redirect:/admin/prodotto";
 	}
 
+	/**
+	 * metodo per visualizzare l'immagine del prodotto
+	 * 
+	 * @param id dell'immagine da visualizzare
+	 * @return immagine del prodotto
+	 **/
 	@GetMapping("/admin/prodotto/{lid}/immagine/{iid}")
 	public ResponseEntity<byte[]> serveImage(@PathVariable("iid") Long imageId) {
 
@@ -162,6 +168,9 @@ public class AdminToProdottoController {
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType(img.getTipoContenuto())).body(img.getDati());
 	}
 
+	/*
+	 * * metodo per visualizzare i dettagli di un prodotto dato il suo id
+	 */
 	@GetMapping("/admin/prodotto/{lid}")
 	public String showDettaglio(@PathVariable Long lid, Model model) {
 		Prodotto prodotto = prodottoService.caricaConCommenti(lid);

@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.query.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -167,13 +165,24 @@ public class ProdottoService {
 		return prodottoRepository.findAll();
 	}
 
-	public List<Prodotto> findByTopPrice(){
+	/*public List<Prodotto> findByTopPrezzo(){
 		return prodottoRepository.findTopProdottiByPrezzo();
+	}*/
+
+	public List<Prodotto> findByTopNome(){
+		return prodottoRepository.findAllOrderByNomeAsc();
 	}
 
-	public List<Prodotto> findByTopCommenti(){
-		return prodottoRepository.findTopProdottiByCommenti();
+	/**
+	 * Restituisce tutti i nomi dei prodotti per l'autocomplete
+	 */
+	public List<String> getAllNomiProdotti() {
+		return prodottoRepository.findAllNomiProdotti();
 	}
+
+	/*public List<Prodotto> findByTopCommenti(){
+		return prodottoRepository.findTopProdottiByCommenti();
+	}*/
 
 	/**
 	 * // PATTERN UNIVERSALE

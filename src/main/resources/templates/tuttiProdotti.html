@@ -24,7 +24,15 @@
 		<!--barra di ricerca-->
 		<div class="search-bar">
 			<form th:action="@{/ricercaHome}" method="POST">
-				<input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca Prodotti...">
+				<input type="text" 
+				       name="keyword" 
+				       th:value="${keyword}" 
+				       placeholder="Cerca Prodotti..." 
+				       list="prodotti-datalist"
+				       autocomplete="off">
+				<datalist id="prodotti-datalist">
+					<option th:each="nome : ${nomiProdotti}" th:value="${nome}"></option>
+				</datalist>
 				<button type="submit">Cerca</button>
 			</form>
 		</div>
@@ -49,15 +57,17 @@
 			</div>
 			
 			<div class="action-buttons mb-3">
+			<!-- bottoni filtrati -->
 			<!-- <a th:href="@{/showAllProdotti(nomeParametro='true')}" class= "btn btn-primary">
-				<i class="fas fa-sort-amount-down-alt mr-1"></i>Ordina per Prezzo (Decrescente)
+				<i class="fas fa-sort-amount-down-alt mr-1"></i>Ordina per Parametro (Decrescente/Crescente)
 			</a>
 			<a th:href="@{/showAllProdotti}" class="btn btn-secondary">
 				<i class="fas fa-times mr-1"></i>Rimuovi Filtro
 			</a> -->
+			<!---->
 			<!-- Bottone per ordinare per prezzo decrescente 
-			<a th:href="@{/showAllProdotti(topCommenti='true')}" class="btn btn-primary">
-				<i class="fas fa-sort-amount-down-alt mr-1"></i>Ordina per Commenti (Decrescente)
+			<a th:href="@{/showAllProdotti(topNome='true')}" class="btn btn-primary">
+				<i class="fas fa-sort-amount-down-alt mr-1"></i>Ordina per Nome (Crescente)
 			</a> -->
 			<!-- Bottone per rimuovere il filtro 
 			<a th:href="@{/showAllProdotti}" class="btn btn-secondary">

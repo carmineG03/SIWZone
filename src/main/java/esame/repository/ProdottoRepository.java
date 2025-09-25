@@ -3,7 +3,6 @@ package esame.repository;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -45,14 +44,22 @@ public interface ProdottoRepository extends JpaRepository<Prodotto, Long> {
 	@Query("SELECT p FROM Prodotto p WHERE p.id = :id")
 	Optional<Prodotto> findByIdOptimized(@Param("id") Long id);
 
-	@Query("SELECT p FROM Prodotto p  ORDER BY p.prezzo DESC")
-	List<Prodotto> findTopProdottiByPrezzo();
+	/*@Query("SELECT p FROM Prodotto p ORDER BY p.prezzzo DESC")
+	List<Prodotto> findTopProdottiByPrezzo();*/
 
-	@Query("SELECT p FROM Prodotto p  JOIN p.commenti c GROUP BY p ORDER BY COUNT(c) DESC")
-	List<Prodotto> findTopProdottiByCommenti();
+	/*@Query("SELECT p FROM Prodotto p  JOIN p.commenti c GROUP BY p ORDER BY COUNT(c) DESC")
+	List<Prodotto> findTopProdottiByCommenti();*/
+
+	@Query("SELECT p FROM Prodotto p ORDER BY p.nome ASC")
+	List<Prodotto> findAllOrderByNomeAsc();
 
 	/**
-	 * Esempi di query personalizzate con @Query
+	 * Restituisce tutti i nomi dei prodotti ordinati alfabeticamente per l'autocomplete
+	 */
+	@Query("SELECT DISTINCT p.nome FROM Prodotto p ORDER BY p.nome ASC")
+	List<String> findAllNomiProdotti();
+
+	/**
 	 * Esempi di query personalizzate con @Query
 	 *
 	 * // PATTERN 1: Selezione con criteri
