@@ -19,6 +19,8 @@
 			<a href="/showAllProdotti">Prodotti</a>
 		</div>
 
+		
+
 		<!--barra di ricerca-->
 		<div class="search-bar">
 			<form th:action="@{/ricercaHome}" method="POST">
@@ -46,6 +48,22 @@
 				<h1><i class="fas fa-shopping-bag mr-2"></i>I nostri prodotti</h1>
 			</div>
 			
+			<div class="action-buttons mb-3">
+			<!-- <a th:href="@{/showAllProdotti(nomeParametro='true')}" class= "btn btn-primary">
+				<i class="fas fa-sort-amount-down-alt mr-1"></i>Ordina per Prezzo (Decrescente)
+			</a>
+			<a th:href="@{/showAllProdotti}" class="btn btn-secondary">
+				<i class="fas fa-times mr-1"></i>Rimuovi Filtro
+			</a> -->
+			<!-- Bottone per ordinare per prezzo decrescente 
+			<a th:href="@{/showAllProdotti(topCommenti='true')}" class="btn btn-primary">
+				<i class="fas fa-sort-amount-down-alt mr-1"></i>Ordina per Commenti (Decrescente)
+			</a> -->
+			<!-- Bottone per rimuovere il filtro 
+			<a th:href="@{/showAllProdotti}" class="btn btn-secondary">
+				<i class="fas fa-times mr-1"></i>Rimuovi Filtro
+			</a> -->
+
 			<!-- Mostra informazioni filtro -->
 			<div th:if="${categoriaSelezionata != null}" class="card mt-3 mb-4" style="background: linear-gradient(135deg, #e0f2fe 0%, #f3e5f5 100%); border: 1px solid var(--primary-color);">
 				<div class="flex items-center gap-2">

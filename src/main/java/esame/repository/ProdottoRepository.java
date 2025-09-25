@@ -3,6 +3,7 @@ package esame.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -43,6 +44,12 @@ public interface ProdottoRepository extends JpaRepository<Prodotto, Long> {
 	 */
 	@Query("SELECT p FROM Prodotto p WHERE p.id = :id")
 	Optional<Prodotto> findByIdOptimized(@Param("id") Long id);
+
+	@Query("SELECT p FROM Prodotto p  ORDER BY p.prezzo DESC")
+	List<Prodotto> findTopProdottiByPrezzo();
+
+	@Query("SELECT p FROM Prodotto p  JOIN p.commenti c GROUP BY p ORDER BY COUNT(c) DESC")
+	List<Prodotto> findTopProdottiByCommenti();
 
 	/**
 	 * Esempi di query personalizzate con @Query

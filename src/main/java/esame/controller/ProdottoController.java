@@ -105,9 +105,17 @@ public class ProdottoController {
 	 * metodo per visualizzare l'homepage del sito
 	 * 
 	 * @return index.html (homepage del sito)
+	 * 
+	 * aggiungere RequestParam(value='nomeParametro',required=false) String nomeParametro per parametri opzionali
+	 * poi if("valore".equals(nomeParametro)) { ... 
+	 * prodotti = prodottoRepository.findByNome(nomeParametro);
+	 * if(prodotti.size() > numero) { prdodotti = prodotti.subList(0, numero); //per limitare il numero di prodotti visualizzato}
+	 * model.addAttribute("nomeParametro", true);
+	 * }else{ prodotti= prodottoRepository.findAll();
+	 *       model.addAttribute("nomeParametro", false);}
 	 */
 	@GetMapping("/showAllProdotti")
-	public String showAllProdotti(Model model, HttpServletResponse response) {
+	public String showAllProdotti(Model model, HttpServletResponse response, @RequestParam(value="topCommenti", required=false) String topCommenti) {
 		// Previeni caching
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 		response.setHeader("Pragma", "no-cache");
@@ -116,12 +124,28 @@ public class ProdottoController {
 		System.out.println("=== MOSTRA TUTTI I PRODOTTI ===");
 		List<Prodotto> prodotti = prodottoRepository.findAll();
 		System.out.println("Totale prodotti: " + prodotti.size());
+
+		if("true".equals(topCommenti)) {
+			prodotti = prodottoRepository.findTopProdottiByCommenti();
+			if(prodotti.size() > 3) {
+				prodotti = prodotti.subList(0, 3); // Limita a top 3
+			}
+
+			model.addAttribute("isTopCommenti", true);
+		}
+		else{
+			prodotti= prodottoRepository.findAll();
+			model.addAttribute("isTopCommenti", false);
+		}
+		
+			// Debug: mostra prime 3 tipologie nel database
 		
 		model.addAttribute("prodotti", prodotti);
 		model.addAttribute("categoriaSelezionata", (String) null); // Reset categoria
 		return "tuttiProdotti";
 	}
 	
+
 	/**
 	 * metodo per filtrare prodotti per categoria
 	 * @param categoria categoria da filtrare
@@ -150,6 +174,7 @@ public class ProdottoController {
 		tuttiProdotti.stream().limit(3).forEach(p -> 
 			System.out.println("  - Prodotto: '" + p.getNome() + "' - Tipologia: '" + p.getTipologia() + "'")
 		);
+		
 		
 		model.addAttribute("prodotti", prodotti);
 		model.addAttribute("categoriaSelezionata", categoria);
