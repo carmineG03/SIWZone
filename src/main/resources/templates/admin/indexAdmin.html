@@ -7,6 +7,76 @@
 	<title>Area Privata SIWZone</title>
 	<link href="/css/headerFooter.css" rel="stylesheet" type="text/css">
 	<link href="/css/stileIndex.css" rel="stylesheet" type="text/css">
+	
+	<style>
+		/* Stili per l'autocomplete */
+		#searchInput {
+			border: 2px solid #e0e0e0;
+			border-radius: 25px;
+			padding: 8px 16px;
+			font-size: 14px;
+			transition: all 0.3s ease;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+		
+		#searchInput:focus {
+			border-color: #007bff;
+			box-shadow: 0 4px 12px rgba(0,123,255,0.2);
+			outline: none;
+		}
+		
+		/* Stili per le opzioni del datalist */
+		#prodotti-datalist option {
+			background: white;
+			color: #333;
+			padding: 8px 12px;
+			font-size: 14px;
+			border-bottom: 1px solid #f0f0f0;
+		}
+		
+		/* Hover effect per le opzioni */
+		#prodotti-datalist option:hover {
+			background-color: #f8f9fa;
+			color: #007bff;
+		}
+		
+		/* Container per migliorare il dropdown */
+		.search-bar {
+			position: relative;
+		}
+		
+		/* Icona di ricerca */
+		.search-bar button {
+			border-radius: 20px;
+			background: linear-gradient(135deg, #007bff, #0056b3);
+			border: none;
+			color: white;
+			padding: 8px 16px;
+			margin-left: 8px;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+		
+		.search-bar button:hover {
+			background: linear-gradient(135deg, #0056b3, #004085);
+			box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+			transform: translateY(-1px);
+		}
+		
+		/* Stili responsive per mobile */
+		@media (max-width: 768px) {
+			#searchInput {
+				padding: 6px 12px;
+				font-size: 13px;
+			}
+			
+			.search-bar button {
+				padding: 6px 12px;
+				font-size: 13px;
+			}
+		}
+	</style>
 </head>
 
 <body>
