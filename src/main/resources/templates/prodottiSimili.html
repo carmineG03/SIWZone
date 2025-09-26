@@ -21,7 +21,16 @@
 
         <div class="search-bar">
             <form th:action="@{/ricercaProdotti}" method="POST">
-                <input type="text" name="keyword" th:value="${keyword}" placeholder="Cerca prodotti...">
+                <input type="text" 
+                       name="keyword" 
+                       th:value="${keyword}" 
+                       placeholder="Cerca prodotti..." 
+                       list="prodotti-datalist"
+                       id="searchInput"
+                       autocomplete="off">
+                <datalist id="prodotti-datalist">
+                    <option th:each="nome : ${nomiProdotti}" th:value="${nome}"></option>
+                </datalist>
                 <button type="submit">Cerca</button>
             </form>
         </div>
@@ -128,6 +137,44 @@
                 });
             });
         });
+        
+        // Script per autocomplete
+        const searchInput = document.getElementById('searchInput');
+        const datalist = document.getElementById('prodotti-datalist');
+        
+        if (searchInput && datalist) {
+            const allOptions = Array.from(datalist.options).map(option => option.value);
+            
+            searchInput.addEventListener('keyup', function() {
+                const inputValue = this.value.toLowerCase();
+                
+                // Rimuovi tutte le opzioni attuali
+                datalist.innerHTML = '';
+                
+                // Se l'input è vuoto, mostra tutti i prodotti
+                if (inputValue === '') {
+                    allOptions.forEach(nome => {
+                        const option = document.createElement('option');
+                        option.value = nome;
+                        datalist.appendChild(option);
+                    });
+                } else {
+                    // Filtra i prodotti che iniziano con le lettere inserite
+                    const filteredOptions = allOptions.filter(nome => 
+                        nome.toLowerCase().startsWith(inputValue)
+                    );
+                    
+                    filteredOptions.forEach(nome => {
+                        const option = document.createElement('option');
+                        option.value = nome;
+                        datalist.appendChild(option);
+                    });
+                }
+                
+                // Forza l'apertura del dropdown
+                this.click();
+            });
+        }
     </script>
 
     <!-- Footer -->

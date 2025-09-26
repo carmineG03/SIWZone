@@ -44,11 +44,7 @@ public interface ProdottoRepository extends JpaRepository<Prodotto, Long> {
 	@Query("SELECT p FROM Prodotto p WHERE p.id = :id")
 	Optional<Prodotto> findByIdOptimized(@Param("id") Long id);
 
-	/*@Query("SELECT p FROM Prodotto p ORDER BY p.prezzzo DESC")
-	List<Prodotto> findTopProdottiByPrezzo();*/
-
-	/*@Query("SELECT p FROM Prodotto p  JOIN p.commenti c GROUP BY p ORDER BY COUNT(c) DESC")
-	List<Prodotto> findTopProdottiByCommenti();*/
+	
 
 	@Query("SELECT p FROM Prodotto p ORDER BY p.nome ASC")
 	List<Prodotto> findAllOrderByNomeAsc();
@@ -78,4 +74,11 @@ public interface ProdottoRepository extends JpaRepository<Prodotto, Long> {
 	 * @Query("SELECT e FROM {Entity} e JOIN e.{relazione} r WHERE {condizioni}")
 	 * List<{Entity}> find{Descrizione}Custom();
 	 */
+
+
+	 /*@Query("SELECT p FROM Prodotto p ORDER BY p.prezzzo DESC")
+	List<Prodotto> findTopProdottiByPrezzo();*/
+
+	/*@Query("SELECT p FROM Prodotto p  JOIN p.commenti c GROUP BY p ORDER BY COUNT(c) DESC")
+	List<Prodotto> findTopProdottiByCommenti();*/
 }

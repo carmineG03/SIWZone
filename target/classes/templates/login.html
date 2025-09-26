@@ -22,6 +22,7 @@
 		<div class="search-bar">
 			<form th:action="@{/ricercaHome}" method="POST">
 				<input type="text" 
+				       id="searchInput"
 				       name="keyword" 
 				       placeholder="Cerca Prodotti..." 
 				       list="prodotti-datalist"
@@ -100,6 +101,28 @@
 			<p>&copy; 2025 SIWZone. Tutti i diritti riservati.</p>
 		</div>
 	</footer>
+
+	<script th:inline="javascript">
+		const nomi = /*[[${nomiProdotti}]]*/ [];
+		const input = document.getElementById('searchInput');
+		const datalist = document.getElementById('prodotti-datalist');
+		
+		input.addEventListener('keyup', function(e) {
+			const query = this.value.toLowerCase().trim();
+			datalist.innerHTML = '';
+			
+			if (query) {
+				nomi.filter(nome => nome.toLowerCase().startsWith(query))
+					.forEach(nome => {
+						datalist.innerHTML += `<option value="${nome}">`;
+					});
+				
+				if (e.key !== 'Enter') {
+					this.click();
+				}
+			}
+		});
+	</script>
 </body>
 
 </html>
